@@ -6,7 +6,6 @@ import pathlib
 
 
 filepaths = glob.glob(r"excelFiles\*.xlsx")
-print(filepaths)
 
 for filepath in filepaths:
     pdf = FPDF(orientation="P",unit="mm",format="A4")
@@ -54,4 +53,3 @@ for filepath in filepaths:
 
 
     pdf.output(fr"invoicePDFS\{filename}.pdf")
-    print(data)
