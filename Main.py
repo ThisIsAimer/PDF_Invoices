@@ -19,7 +19,26 @@ for filepath in filepaths:
     pdf.cell(w=50,h=8,txt=f"date: {date}",ln=1)
 
     data = pandas.read_excel(filepath, sheet_name="Sheet 1")
-    # for index, rows in data.iterrows():
+    header =  list(data.columns)
+    header = [item.replace("_"," ") for item in header]
+    pdf.set_font(family="times", size=10,style="B")
+    pdf.set_text_color(100, 100, 100)
+    pdf.cell(w=30, h=8, txt=header[0], ln=0, border=1)
+    pdf.cell(w=70, h=8, txt=header[1], ln=0, border=1)
+    pdf.cell(w=30, h=8, txt=header[2], ln=0, border=1)
+    pdf.cell(w=30, h=8, txt=header[3], ln=0, border=1)
+    pdf.cell(w=30, h=8, txt=header[4], ln=1, border=1)
+
+
+    for index, rows in data.iterrows():
+        pdf.set_font(family="times",size=10)
+        pdf.set_text_color(100,100,100)
+        pdf.cell(w=30,h=8,txt=str(rows["product_id"]),ln=0,border=1)
+        pdf.cell(w=70, h=8, txt=str(rows["product_name"]),ln=0,border=1)
+        pdf.cell(w=30, h=8, txt=str(rows["amount_purchased"]),ln=0,border=1)
+        pdf.cell(w=30, h=8, txt=str(rows["price_per_unit"]),ln=0,border=1)
+        pdf.cell(w=30, h=8, txt=str(rows["total_price"]),ln=1,border=1)
+
 
     pdf.output(fr"invoicePDFS\{filename}.pdf")
     print(data)
