@@ -39,6 +39,19 @@ for filepath in filepaths:
         pdf.cell(w=30, h=8, txt=str(rows["total_price"]),ln=1,border=1)
         total+= int(rows["total_price"])
 
+    pdf.set_font(family="times", size=10,style="B")
+    pdf.set_text_color(0,0,0)
+    pdf.cell(w=30, h=8, txt="", ln=0, border=1)
+    pdf.cell(w=70, h=8, txt="", ln=0, border=1)
+    pdf.cell(w=30, h=8, txt="", ln=0, border=1)
+    pdf.cell(w=30, h=8, txt="", ln=0, border=1)
+    pdf.cell(w=30, h=8, txt=str(total), ln=1, border=1)
+
+    pdf.ln(10)
+
+    pdf.set_font(family="times", style="B", size=13)
+    pdf.cell(w=50, h=8, txt=f"Your total is: {total}", ln=1)
+
 
     pdf.output(fr"invoicePDFS\{filename}.pdf")
     print(data)
